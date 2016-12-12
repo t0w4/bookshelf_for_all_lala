@@ -1,0 +1,107 @@
+body{
+  background-color: #f8f8ff;
+}
+
+#user_email{
+  width: 230px;
+}
+
+#user_password{
+  width: 230px;
+}
+
+#user_password_confirmation{
+  width: 230px;
+}
+
+.error-message{
+  color:red;
+}
+
+.navbar-background{
+  height: 51px;
+}
+
+.nav{
+  margin: 50px 0 0;
+}
+
+.nav a{
+  background-color: #6de873;
+  color: #0b3d82;
+}
+
+.nav-right{
+  float: right;
+  margin-top: 6px;
+}
+
+.dropdown-toggle{
+  color: white;
+}
+
+.show-btn{
+  text-align: right;
+}
+
+.col-md-6{
+  background-color: white;
+  text-align: center;
+  height: 300px;
+}
+
+.col-md-6 h3{
+  margin-top: 100px;
+}
+
+
+.row .col-md-8{
+  background-color: white;
+  height: 100%;
+}
+
+.row .col-md-2{
+}
+
+.row .col-md-3 .thumbnail{
+  height: 380px;
+}
+
+
+hr {
+  border-top: 3px double #bbb;
+}
+
+.book-info {
+  line-height: 150%;
+  font-size : 1.7vh;
+}
+
+.imag-tag{
+  height:250px;
+  width:auto;
+  overflow:hidden;
+  position:relative;
+}
+
+.btn-shadow(@color) {
+  #gradient > .vertical-three-colors(lighten(@color, 8%), @color, 60%, darken(@color, 4%));
+  filter: none;
+  border-bottom: 1px solid darken(@color, 10%);
+}
+
+
+// Navbar =====================================================================
+
+.navbar {
+  background-color: white;
+  &-default {
+    .btn-shadow(@navbar-default-bg);
+    filter: none;
+    .box-shadow(0 1px 10px rgba(0, 0, 0, 0.1));
+
+    .badge {
+      background-color: #fff;
+      color: @navbar-default-bg;
+    }
+  }

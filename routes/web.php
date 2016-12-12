@@ -10,5 +10,9 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::get('/', function()
+{
+    return Redirect::to('/books');
+});
 
 Route::resource('books', 'BookController');
