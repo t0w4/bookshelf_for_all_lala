@@ -15,4 +15,5 @@ Route::get('/', function()
     return Redirect::to('/books');
 });
 
+Route::get('books/search', 'BookController@search');
 Route::resource('books', 'BookController');

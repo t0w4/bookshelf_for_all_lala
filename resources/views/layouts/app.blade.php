@@ -8,9 +8,9 @@
     <title>みんなの本棚</title>
 
     <!-- Styles -->
-    <link href="css/app.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/add_config.css" rel="stylesheet">
+    {{ HTML::style('css/app.css') }}
+    {{ HTML::style('css/bootstrap.min.css') }}
+    {{ HTML::style('css/add_config.css') }}
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
 </head>
@@ -47,11 +47,13 @@
     <div class="navbar-background">
     </div>
 
-    @yield('content')
+    @yield('content');
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {{ HTML::script('js/add_config.js') }}
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
 </body>
 </html>

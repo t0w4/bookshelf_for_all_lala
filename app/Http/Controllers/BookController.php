@@ -20,6 +20,32 @@ class BookController extends Controller
     }
 
     /**
+     * Display a result of the search.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        switch ($request->searchtype){
+        case 'title':
+          $books = Book::where('title', 'LIKE', "%$request->keyword%")->orderBy('created_at','desc')->paginate(12);
+          return view('books.search', ['books' => $books]);
+          break;
+        case 'author':
+          $books = Book::where('author', 'LIKE', "%$request->keyword%")->orderBy('created_at','desc')->paginate(12);
+          return view('books.search', ['books' => $books]);
+          break;
+        case 'tag':
+          // @books = Book.search(:title_cont => "#{params[:keyword]}").result.page(params[:page]).per(12).order("created_at DESC")
+          break;
+        default:
+          $books = Book::orderBy('created_at','desc')->paginate(12);
+          return view('books.search', ['books' => $books]);
+        }
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

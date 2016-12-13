@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container theme-showcase">
 
       <div class="form-group">
@@ -12,13 +13,13 @@
         </ul>
 
         {!! Form::open(['url' => '/books/search', 'method' => 'get']) !!}
-        <div class="input-group">
-          <input type="hidden" name="searchtype" value="title" class="search-type" />
-          <input type="text" placeholder="本を検索" name="keyword" value="" class="form-control" />
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">検索</button>
-          </span>
-        </div>
+          <div class="input-group">
+            <input type="hidden" name="searchtype" value="title" class="search-type" />
+            <input type="text" placeholder="本を検索" name="keyword" value="" class="form-control" />
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">検索</button>
+            </span>
+          </div>
         {!! Form::close() !!}
 
     </div>
@@ -31,7 +32,7 @@
       <div class="col-md-offset-2 col-md-8">
         <h4>
           <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-          新着本
+          検索結果
         </h4>
         <hr>
 
@@ -39,8 +40,8 @@
           @foreach ($books as $book)
             @include('books.book', ['book' => $book])
           @endforeach
-
         </div>
+
         <div style='text-align:center;'>
           {{ $books->render() }}
         </div>
