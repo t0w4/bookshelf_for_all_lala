@@ -1,7 +1,7 @@
             <div class="col-sm-4 col-md-3">
               <div class="thumbnail">
                 <div class="imag-tag">
-                  <a href="books/{{$book->id}}">
+                  <a href="/books/{{$book->id}}">
                     {{Html::image($book->image, '画像がありません', ['border' => "0", 'width' => "175", 'height' => "300"])}}
                   </a>
                 </div>

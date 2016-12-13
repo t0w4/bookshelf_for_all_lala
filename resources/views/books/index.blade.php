@@ -11,7 +11,7 @@
           <li><a href="#" class="tag">タグ</a></li>
         </ul>
 
-        {!! Form::open(['url' => '/books/search', 'method' => 'get']) !!}
+        {{ Form::open(['url' => '/books/search', 'method' => 'get']) }}
         <div class="input-group">
           <input type="hidden" name="searchtype" value="title" class="search-type" />
           <input type="text" placeholder="本を検索" name="keyword" value="" class="form-control" />
@@ -19,7 +19,7 @@
             <button class="btn btn-primary" type="submit">検索</button>
           </span>
         </div>
-        {!! Form::close() !!}
+        {{ Form::close() }}
 
     </div>
 
