@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -52,7 +53,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -63,7 +64,23 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'book.title' => 'required',
+            'book.author' => 'required',
+            'book.publicationDate' => ['required','date_format:"Y/m/d"']
+        ]);
+
+        Book::create([
+            'title'           => $request->input('book.title'),
+            'author'          => $request->input('book.author'),
+            'publisher'       => $request->input('book.publisher'),
+            'publicationDate' => Carbon::createFromFormat('Y/m/d', $request->input('book.publicationDate'))->format('Y-m-d'),
+            'image'           => $request->input('book.image'),
+            'description'     => $request->input('book.description')
+        ]);
+
+        return view('books.store');
     }
 
     /**

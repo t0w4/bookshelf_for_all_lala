@@ -8,9 +8,9 @@
     <title>みんなの本棚</title>
 
     <!-- Styles -->
-    {{ HTML::style('css/app.css') }}
-    {{ HTML::style('css/bootstrap.min.css') }}
-    {{ HTML::style('css/add_config.css') }}
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/add_config.css" rel="stylesheet">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
 </head>
@@ -30,16 +30,18 @@
             <li class='dropdown btn btn-primary'>
               <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>アカウント <span class='caret'></span></a>
               <ul class='dropdown-menu' role='menu'>
-<!--                 <li><%= link_to "マイ本棚", user_path(current_user) %></li>
-                <li><%= link_to "プロフィール編集", edit_user_registration_path %></li>
-                <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li> -->
+                <!-- <li><%= link_to "マイ本棚", user_path(current_user) %></li> -->
+                <!-- <li><%= link_to "プロフィール編集", edit_user_registration_path %></li> -->
+                <!-- <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li> -->
               </ul>
             </li>
-<!--             <%= link_to "本を登録！", new_book_path ,class: "btn btn-success" %>
-          <% else %>
+            <!-- <%= link_to "本を登録！", new_book_path ,class: "btn btn-success" %> -->
+            <a href="/books/create" class="btn btn-success" role="button">本を登録！</a>
+
+          <!-- <% else %>
             <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary"  %>
-          <% end %>
- -->
+          <% end %> -->
+
         </div>
       </div>
     </div>
@@ -47,12 +49,12 @@
     <div class="navbar-background">
     </div>
 
-    @yield('content');
+    @yield('content')
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {{ HTML::script('js/add_config.js') }}
+    <script src="/js/add_config.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
 </body>
