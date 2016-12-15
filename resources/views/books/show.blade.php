@@ -22,10 +22,16 @@
             <%= hidden_field_tag("user_id", current_user.id) %>
             <button type="button" class="btn btn-success" onclick="submit();">マイ本棚に登録</button>
           <% end %><br /> -->
-
-          <a href="/books/{{ $book->id }}/edit" class="btn btn-primary" role="button">編集</a>
-          <a href="/" class="btn btn-default" role="button">戻る</a>
-          <a href="/books/{{ $book->id }}" class="btn btn-danger" method="delete" role="button">削除</a>
+          <div style="text-align: right;">
+            <div style="display:inline-flex;">
+              <a href="/books/{{ $book->id }}/edit" class="btn btn-primary" role="button">編集</a>
+              <a href="/" class="btn btn-default" role="button">戻る</a>
+              {{ Form::open(['url' => "/books/$book->id", 'method' => 'post']) }}
+                {{ method_field('DELETE') }}
+                <button class="btn btn-danger">削除</button>
+              {{ Form::close() }}
+            </div>
+          </div>
 <!--         <% else %>
           <a href="/" class="btn btn-primary" role="button">戻る</a>
         <% end %> -->

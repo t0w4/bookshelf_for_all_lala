@@ -126,6 +126,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::destroy($id);
+        return view('books.destroy');
     }
 }
