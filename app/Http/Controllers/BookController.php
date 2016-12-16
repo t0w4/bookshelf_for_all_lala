@@ -103,7 +103,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        return view('books.edit', ['book' => $book]);
     }
 
     /**
@@ -115,7 +116,24 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'book.title' => 'required',
+            'book.author' => 'required',
+            'book.publicationDate' => ['required','date_format:"Y/m/d"']
+        ]);
+
+        $book = Book::find($id);
+
+        $book->title           = $request->input('book.title');
+        $book->author          = $request->input('book.author');
+        $book->publisher       = $request->input('book.publisher');
+        $book->publicationDate = Carbon::createFromFormat('Y/m/d', $request->input('book.publicationDate'))->format('Y-m-d');
+        $book->image           = $request->input('book.image');
+        $book->description     = $request->input('book.description');
+
+        $book->save();
+
+        return view('books.show', ['book' => $book]);
     }
 
     /**
