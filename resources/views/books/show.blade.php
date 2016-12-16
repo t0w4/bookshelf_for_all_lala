@@ -16,7 +16,7 @@
       <p class="book-info">{{ $book->description }}</p>
 
       <p class=show-btn>
-<!--         <% if user_signed_in? %> -->
+        @if (Auth::check())
 <!--           <%= form_tag(add_user_books_path, :method => :post) do %>
             <%= hidden_field_tag("book_id", @book.id) %>
             <%= hidden_field_tag("user_id", current_user.id) %>
@@ -32,9 +32,9 @@
               {{ Form::close() }}
             </div>
           </div>
-<!--         <% else %>
+        @else
           <a href="/" class="btn btn-primary" role="button">戻る</a>
-        <% end %> -->
+        @endif
       </p>
     </div>
   </div>
