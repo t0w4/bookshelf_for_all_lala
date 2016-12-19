@@ -23,4 +23,11 @@ class Book extends Model
         'publicationDate' => 'date',
     ];
 
+    /**
+     * 本についているタグ
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
 }

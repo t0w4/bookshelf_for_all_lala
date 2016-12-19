@@ -10,9 +10,10 @@
       <p class="book-info">{{ $book->author }}</p>
       <p class="book-info">{{ $book->publisher }}</p>
       <p class="book-info">{{ $book->publicationDate->format('Y年m月d日') }}</p>
-<!--       <% @book.tag_list.each do |tag| %>
-        <span class="label label-primary"><%= tag %></span>
-      <% end %><br></br> -->
+      @foreach ($book->tags as $tag)
+        <span class="label label-primary">{{ $tag->name }}</span>
+      @endforeach<br><br />
+
       <p class="book-info">{{ $book->description }}</p>
 
       <p class=show-btn>

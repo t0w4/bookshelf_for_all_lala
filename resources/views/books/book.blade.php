@@ -8,9 +8,9 @@
                 <div class="caption">
                   <a href="books/{{$book->id}}" class="book-info">{{str_limit($book->title, 20)}}</a>
                   <div class="book-info">{{str_limit($book->author, 20)}}</div>
-<!--                   <% book.tag_list.each do |tag| %>
-                    <span class="label label-primary"><%= tag %></span>
-                  <% end %><br></br>
- -->            </div>
+                    @foreach ($book->tags as $tag)
+                      <span class="label label-primary">{{ $tag->name }}</span>
+                    @endforeach
+                    </div>
+                </div>
               </div>
-            </div>
