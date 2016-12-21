@@ -55,6 +55,7 @@
                             </li>
                         </ul>
                     </li>
+                    <a class="btn btn-success" href="/books/create">本を登録！</a>
                 @endif
 
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -71,14 +72,31 @@ class BookController extends Controller
             'book.publicationDate' => ['required','date_format:"Y/m/d"']
         ]);
 
-        Book::create([
-            'title'           => $request->input('book.title'),
-            'author'          => $request->input('book.author'),
-            'publisher'       => $request->input('book.publisher'),
-            'publicationDate' => Carbon::createFromFormat('Y/m/d', $request->input('book.publicationDate'))->format('Y-m-d'),
-            'image'           => $request->input('book.image'),
-            'description'     => $request->input('book.description')
-        ]);
+        $book = Book::create([
+                    'title'           => $request->input('book.title'),
+                    'author'          => $request->input('book.author'),
+                    'publisher'       => $request->input('book.publisher'),
+                    'publicationDate' => Carbon::createFromFormat('Y/m/d', $request->input('book.publicationDate'))->format('Y-m-d'),
+                    'image'           => $request->input('book.image'),
+                    'description'     => $request->input('book.description')
+                ]);
+
+        /*  登録されているタグか確認し、登録されていないなら登録する。
+            その後タグ名からidを取得し本とタグのリレーションを設定する。
+        */
+        /*  登録されているタグか確認し、登録されていないなら登録する。
+            その後タグ名からidを取得し本とタグのリレーションを設定する。
+        */
+        $tag_name_array = explode(",", $request->input('book.tag_list'));
+
+        if (!empty($tag_name_array[0])){
+            $tag_id_array = array();
+            foreach ($tag_name_array as $tag_name){
+                $tag = Tag::firstOrCreate(['name' => $tag_name]);
+                $tag_id_array[] = $tag->id;
+            }
+            $book->tags()->sync($tag_id_array);
+        }
 
         return view('books.store');
     }
@@ -132,6 +150,20 @@ class BookController extends Controller
         $book->description     = $request->input('book.description');
 
         $book->save();
+
+        /*  登録されているタグか確認し、登録されていないなら登録する。
+            その後タグ名からidを取得し本とタグのリレーションを設定する。
+        */
+        $tag_name_array = explode(",", $request->input('book.tag_list'));
+
+        if (!empty($tag_name_array[0])){
+            $tag_id_array = array();
+            foreach ($tag_name_array as $tag_name){
+                $tag = Tag::firstOrCreate(['name' => $tag_name]);
+                $tag_id_array[] = $tag->id;
+            }
+            $book->tags()->sync($tag_id_array);
+        }
 
         return view('books.show', ['book' => $book]);
     }

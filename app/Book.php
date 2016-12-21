@@ -12,7 +12,7 @@ class Book extends Model
      *
      * @var array
      */
-    protected $fillable = ['title','author','publisher','publicationDate','image','description'];
+    protected $fillable = ['title','author','publisher','publicationDate','image','description','tag_list'];
 
     /**
      * Dateタイプへキャストする属性

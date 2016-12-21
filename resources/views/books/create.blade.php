@@ -37,10 +37,10 @@
         <input class="form-control" id="focusedInput_image" type="text" name="book[image]">
       </div>
 
-      <!-- <div class="form-group">
-      <label class="control-label" for="focusedInput_tags">タグ(入力後Enter)</label></br>
-        <%= f.text_field :tag_list, :class => 'form-control', :id => 'focusedInput_tags', "data-role" => "tagsinput" %>
-      </div> -->
+      <div class="form-group">
+        <label class="control-label" for="focusedInput_tags">タグ(入力後Enter)</label><br />
+        <input type="text" name="book[tag_list]" id="focusedInput_tags" value="" class="form-control" data-role="tagsinput" style="display: none;">
+      </div>
 
       <div class="form-group">
         <label class="control-label" for="focusedInput_description">本の概要</label>
