@@ -18,6 +18,11 @@ Route::get('/', function()
 Route::get('books/search', 'BookController@search');
 Route::resource('books', 'BookController');
 
+Route::resource('users', 'UserController', ['only' => ['index', 'show', 'create', 'update']]);
+
+Route::post('userBooks/add', 'UserBookController@add');
+Route::resource('userBooks', 'UserBookController', ['only' => ['show', 'destroy']]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
