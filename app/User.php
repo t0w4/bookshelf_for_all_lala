@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * ユーザが所有する本
+     */
+    public function books()
+    {
+        return $this->belongsToMany('App\Book')->withTimestamps();
+    }
+
+
+
 }

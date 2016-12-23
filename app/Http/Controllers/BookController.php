@@ -84,9 +84,6 @@ class BookController extends Controller
         /*  登録されているタグか確認し、登録されていないなら登録する。
             その後タグ名からidを取得し本とタグのリレーションを設定する。
         */
-        /*  登録されているタグか確認し、登録されていないなら登録する。
-            その後タグ名からidを取得し本とタグのリレーションを設定する。
-        */
         $tag_name_array = explode(",", $request->input('book.tag_list'));
 
         if (!empty($tag_name_array[0])){
