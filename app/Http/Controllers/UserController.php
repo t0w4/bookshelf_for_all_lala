@@ -21,7 +21,7 @@ class UserController extends Controller
     public function show($id)
     {
         #ログインユーザのIDとページのユーザIDが一致しているなら表示
-        if (Auth::user()->id = $id){
+        if (Auth::user()->id == $id){
           $user_books = Auth::user()->books()->orderBy('created_at','desc')->paginate(12);
 
           return view('users.show', ['user_books' => $user_books]);
