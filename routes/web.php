@@ -20,8 +20,8 @@ Route::resource('books', 'BookController');
 
 Route::resource('users', 'UserController', ['only' => ['index', 'show', 'create', 'update']]);
 
-Route::post('userBooks/add', 'UserBookController@add');
-Route::resource('userBooks', 'UserBookController', ['only' => ['show', 'destroy']]);
+Route::post('book_user/add', 'Book_userController@add');
+Route::resource('book_user', 'Book_userController', ['only' => ['show', 'destroy']]);
 
 Auth::routes();
 

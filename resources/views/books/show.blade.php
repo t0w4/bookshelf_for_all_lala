@@ -18,12 +18,14 @@
 
       <p class=show-btn>
         @if (Auth::check())
-<!--           <%= form_tag(add_user_books_path, :method => :post) do %>
-            <%= hidden_field_tag("book_id", @book.id) %>
-            <%= hidden_field_tag("user_id", current_user.id) %>
-            <button type="button" class="btn btn-success" onclick="submit();">マイ本棚に登録</button>
-          <% end %><br /> -->
+
           <div style="text-align: right;">
+            {{ Form::open(['url' => "/book_user/add", 'method' => 'post']) }}
+              <input type="hidden" name="book_id" id="book_id" value="{{$book->id}}">
+              <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
+              <button type="button" class="btn btn-success" onclick="submit();">マイ本棚に登録</button>
+            {{ Form::close() }}<br />
+
             <div style="display:inline-flex;">
               <a href="/books/{{ $book->id }}/edit" class="btn btn-primary" role="button">編集</a>
               <a href="/" class="btn btn-default" role="button">戻る</a>
