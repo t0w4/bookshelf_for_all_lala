@@ -39,4 +39,13 @@ class Book extends Model
         return $this->belongsToMany('App\User')->withTimestamps();
     }
 
+    /**
+     * 本とユーザのひも付き
+     */
+    public function book_users()
+    {
+        return $this->hasMany('App\Book_user');
+    }
+
+
 }

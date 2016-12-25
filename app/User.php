@@ -35,6 +35,13 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Book')->withTimestamps();
     }
 
+    /**
+     * 本とユーザのひも付き
+     */
+    public function book_users()
+    {
+        return $this->hasMany('App\Book_user');
+    }
 
 
 }

@@ -11,8 +11,8 @@
         <hr>
 
         <div class="row">
-          @foreach ($user_books as $book)
-            @include('books.book', ['book' => $book])
+          @foreach ($user_books as $user_book)
+            @include('user_book.book', ['user_book' => $user_book])
           @endforeach
 
         </div>

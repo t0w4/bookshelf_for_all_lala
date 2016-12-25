@@ -7,6 +7,7 @@ use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Carbon\Carbon;
 
 class Book_userController extends Controller
 {
@@ -33,7 +34,11 @@ class Book_userController extends Controller
         #ログインユーザのIDとリクエストのユーザIDが一致しているなら追加
         if (Auth::user()->id == $request->input('user_id')){
           DB::table('book_user')->insert(
-              ['user_id' => $request->input('user_id'), 'book_id' => $request->input('book_id') ]
+              ['user_id'    => $request->input('user_id'),
+               'book_id'    => $request->input('book_id'),
+               'created_at' => Carbon::now(),
+               'updated_at' => Carbon::now()
+               ]
           );
           return redirect()->route('users.show', ['id' => $request->input('user_id')]);
 
