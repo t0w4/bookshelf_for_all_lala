@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use App\Book_user;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -19,8 +20,8 @@ class Book_userController extends Controller
      */
     public function show($id)
     {
-        $book_user = DB::table('book_user')->find($id);
-        return view('books.show', ['book' => $book]);
+        $book_user = Book_user::find($id);
+        return view('book_user.show', ['book_user' => $book_user]);
     }
 
     /**
@@ -48,16 +49,21 @@ class Book_userController extends Controller
 
     }
 
-  //   def show
-  //     @user_book = UserBook.find(params[:id])
-  //     @book = @user_book.book
-  //   end
-
-  //   def destroy
-  //     @user_book = UserBook.find(params[:id])
-  //     @user_book.destroy
-
-  //     redirect_to controller: 'users', action: 'show', id: current_user.id
-  //   end
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        #ログインユーザのIDとBook_userのユーザIDが一致するなら削除
+        if (Auth::user()->id == Book_user::find($id)->user_id){
+          Book_user::destroy($id);
+          return redirect()->route('users.show', ['id' => Auth::user()->id]);
+        }else{
+          return redirect()->route('users.show', ['id' => Auth::user()->id]);
+        }
+    }
 
 }

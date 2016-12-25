@@ -22,9 +22,9 @@ class UserController extends Controller
     {
         #ログインユーザのIDとページのユーザIDが一致しているなら表示
         if (Auth::user()->id == $id){
-          $user_books = Auth::user()->book_users()->orderBy('created_at','desc')->paginate(12);
+          $book_users = Auth::user()->book_users()->orderBy('created_at','desc')->paginate(12);
 
-          return view('users.show', ['user_books' => $user_books]);
+          return view('users.show', ['book_users' => $book_users]);
 
         }else{
           return redirect('/');

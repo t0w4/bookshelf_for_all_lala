@@ -11,13 +11,13 @@
         <hr>
 
         <div class="row">
-          @foreach ($user_books as $user_book)
-            @include('user_book.book', ['user_book' => $user_book])
+          @foreach ($book_users as $book_user)
+            @include('book_user.book', ['book_user' => $book_user])
           @endforeach
 
         </div>
         <div style='text-align:center;'>
-          {{ $user_books->render() }}
+          {{ $book_users->render() }}
         </div>
 
       </div>
