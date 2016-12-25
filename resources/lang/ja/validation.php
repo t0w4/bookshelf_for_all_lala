@@ -100,5 +100,7 @@ return [
         'book.title'  => '作品名',
         'book.author' => '著者',
         'book.publicationDate' => '出版日',
+        'password'    => 'パスワード',
+        'new_password'    => '新しいパスワード'
     ],
 ];
