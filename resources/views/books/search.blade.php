@@ -43,7 +43,7 @@
         </div>
 
         <div style='text-align:center;'>
-          {{ $books->render() }}
+          {!! $books->appends(Request::input())->render() !!}
         </div>
 
       </div>

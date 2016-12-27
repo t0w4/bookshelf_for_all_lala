@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Tag;
+use DB;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -38,7 +40,26 @@ class BookController extends Controller
           return view('books.search', ['books' => $books]);
           break;
         case 'tag':
-          // @books = Book.search(:title_cont => "#{params[:keyword]}").result.page(params[:page]).per(12).order("created_at DESC")
+          //検索キーワードを含むタグのIDを抽出
+          $tags  = Tag::where('name', 'LIKE', "%$request->keyword%")->get();
+          $tag_id_array = array();
+          foreach ($tags as $tag){
+                $tag_id_array[] = $tag->id;
+          }
+
+          //検索キーワードを含むタグがついている本のIDを取得
+          $book_id_collections = DB::table('book_tag')->whereIn('tag_id', $tag_id_array)->select('book_id')->distinct()->get();
+
+          $book_ids = $book_id_collections->map(function ($item, $key) {
+            return $item->book_id;
+          });
+
+          $books = Book::whereIn('id', $book_ids)->orderBy('created_at','desc')->paginate(12);
+
+          return view('books.search', ['books' => $books,
+                                     'keyword' => $request->keyword,
+                                     'searchtype' => $request->searchtype]);
+
           break;
         default:
           $books = Book::orderBy('created_at','desc')->paginate(12);
@@ -72,6 +93,7 @@ class BookController extends Controller
             'book.publicationDate' => ['required','date_format:"Y/m/d"']
         ]);
 
+        //本を登録
         $book = Book::create([
                     'title'           => $request->input('book.title'),
                     'author'          => $request->input('book.author'),
@@ -80,6 +102,16 @@ class BookController extends Controller
                     'image'           => $request->input('book.image'),
                     'description'     => $request->input('book.description')
                 ]);
+
+        //本を登録したユーザの本棚にも登録
+          DB::table('book_user')->insert(
+              ['user_id'    => Auth::user()->id,
+               'book_id'    => $book->id,
+               'created_at' => Carbon::now(),
+               'updated_at' => Carbon::now()
+               ]
+          );
+
 
         /*  登録されているタグか確認し、登録されていないなら登録する。
             その後タグ名からidを取得し本とタグのリレーションを設定する。
