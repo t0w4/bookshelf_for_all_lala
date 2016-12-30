@@ -4,6 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Book_user
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $book_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Book $book
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\Book_user whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Book_user whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Book_user whereBookId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Book_user whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Book_user whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Book_user extends Model
 {
     //
