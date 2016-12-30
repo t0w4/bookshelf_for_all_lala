@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // ...
         Collective\Html\HtmlServiceProvider::class,
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // Laravel IDE helper
         // ...
 
     ],
