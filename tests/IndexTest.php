@@ -1,5 +1,6 @@
 <?php
 
+use App\Book;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -13,7 +14,7 @@ class IndexTest extends TestCase
      */
     public function testLConstWords()
     {
-        $books = factory(App\Book::class, 10)->create();
+        $books = factory(Book::class, 10)->create();
 
         $this->visit('/books')
             ->see('みんなの本棚')
