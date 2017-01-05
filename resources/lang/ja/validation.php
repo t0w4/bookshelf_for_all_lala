@@ -27,7 +27,7 @@ return [
     'boolean'              => ':attributeはtrueかfalseにしてください。',
     'confirmed'            => ':attributeは確認用項目と一致していません。',
     'date'                 => ':attributeは正しい日付ではありません。',
-    'date_format'          => ':attributeは":format"書式と一致していません。',
+    'date_format'          => ':attributeは":format"形式で入力してください。',
     'different'            => ':attributeは:otherと違うものにしてください。',
     'digits'               => ':attributeは:digits桁にしてください',
     'digits_between'       => ':attributeは:min〜:max桁にしてください。',
