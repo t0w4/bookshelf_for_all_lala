@@ -25,4 +25,4 @@ Route::resource('book_user', 'Book_userController', ['only' => ['show', 'destroy
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
