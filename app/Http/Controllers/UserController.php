@@ -73,7 +73,7 @@ class UserController extends Controller
             $user->save();
             return redirect('/');
         }else{
-            return back()->withInput()->with('message', '現在のパスワードが一致しません。');;
+            return back()->withInput()->with('message', '現在のパスワードと一致しません。');;
         }
 
     }
