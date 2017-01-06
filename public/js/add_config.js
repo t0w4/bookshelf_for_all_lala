@@ -7,6 +7,6 @@ window.addEventListener("load",
         $(".search-type").val($(this).children("a").attr("class"));
       }
     );
-    $('.alert-danger').fadeIn(1000).delay(2000).fadeOut(2000);
+    $('.alert-danger').delay(2000).fadeOut(2000);
   }
 );
