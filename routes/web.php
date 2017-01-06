@@ -19,7 +19,9 @@ Route::get('books/search', 'BookController@search');
 Route::post('books', 'BookController@store')->middleware('samebook');
 Route::resource('books', 'BookController', ['except' => ['store'] ]);
 
-Route::resource('users', 'UserController', ['only' => ['show', 'edit', 'update']]);
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('users', 'UserController', ['only' => ['show', 'edit', 'update']]);
+});
 
 Route::post('book_user/add', 'Book_userController@add');
 Route::resource('book_user', 'Book_userController', ['only' => ['show', 'destroy']]);
