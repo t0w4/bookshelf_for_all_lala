@@ -23,8 +23,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', 'UserController', ['only' => ['show', 'edit', 'update']]);
 });
 
-Route::post('book_user/add', 'Book_userController@add');
-Route::resource('book_user', 'Book_userController', ['only' => ['show', 'destroy']]);
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('book_user/add', 'Book_userController@add');
+    Route::resource('book_user', 'Book_userController', ['only' => ['show', 'destroy']]);
+});
 
 Auth::routes();
 
