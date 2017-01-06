@@ -17,7 +17,7 @@
 
     @if (session('message'))
          <div class="alert alert-danger" style="text-align: center;margin: 5px 5px">
-            <strong style="color: red">{{ session('message') }}</strong>
+            <span class="error-message">{{ session('message') }}</span>
          </div>
     @endif
     {{ Form::open(['url' => 'books', 'method' => 'POST']) }}
