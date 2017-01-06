@@ -16,7 +16,8 @@ Route::get('/', function()
 });
 
 Route::get('books/search', 'BookController@search');
-Route::resource('books', 'BookController');
+Route::post('books', 'BookController@store')->middleware('samebook');
+Route::resource('books', 'BookController', ['except' => ['store'] ]);
 
 Route::resource('users', 'UserController', ['only' => ['show', 'edit', 'update']]);
 

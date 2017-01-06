@@ -15,6 +15,11 @@
         </div>
     @endif
 
+    @if (session('message'))
+         <div class="alert alert-danger" style="text-align: center;margin: 5px 5px">
+            <strong style="color: red">{{ session('message') }}</strong>
+         </div>
+    @endif
     {{ Form::open(['url' => 'books', 'method' => 'POST']) }}
       <div class="form-group">
         <label class="control-label" for="focusedInput_title">作品名</label>
