@@ -20,7 +20,7 @@ class Book_userController extends Controller
      */
     public function show($id)
     {
-        $book_user = Book_user::find($id);
+        $book_user = Book_user::findOrFail($id);
         return view('book_user.show', ['book_user' => $book_user]);
     }
 
@@ -58,7 +58,7 @@ class Book_userController extends Controller
     public function destroy($id)
     {
         #ログインユーザのIDとBook_userのユーザIDが一致するなら削除
-        if (Auth::user()->id == Book_user::find($id)->user_id){
+        if (Auth::user()->id == Book_user::findOrFail($id)->user_id){
           Book_user::destroy($id);
           return redirect()->route('users.show', ['id' => Auth::user()->id]);
         }else{

@@ -138,7 +138,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::find($id);
+        $book = Book::findOrFail($id);
         return view('books.show', ['book' => $book]);
     }
 
@@ -150,7 +150,7 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $book = Book::find($id);
+        $book = Book::findOrFail($id);
         return view('books.edit', ['book' => $book]);
     }
 
@@ -169,7 +169,7 @@ class BookController extends Controller
             'book.publicationDate' => ['required','date_format:"Y/m/d"']
         ]);
 
-        $book = Book::find($id);
+        $book = Book::findOrFail($id);
 
         $book->title           = $request->input('book.title');
         $book->author          = $request->input('book.author');

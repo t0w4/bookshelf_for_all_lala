@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         #ログインユーザのIDとページのユーザIDが一致しているなら表示
         if (Auth::user()->id == $id){
-          $user = User::find(Auth::user()->id);
+          $user = User::findOrFail(Auth::user()->id);
           return view('users.edit', ['user' => $user]);
 
         }else{
@@ -63,7 +63,7 @@ class UserController extends Controller
             'new_password' => 'required|min:6'
         ]);
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         $user->name           = $request->input('name');
         $user->email          = $request->input('email');
